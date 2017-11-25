@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">workaround</string>
+    <string name="hint_nome">Nome</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_senha">Senha</string>
+    <string name="txt_btnSignUp">Cadastrar</string>
+    <string name="imgbtn_worker">worker</string>
+    <string name="imgbtn_user">user</string>
+    <string name="txt_escolhaPerfil">Escolha o perfil:</string>
+    <string name="txt_worker">Worker</string>
+    <string name="txt_usuario">Usuário</string>
+    <string name="btn_logout">Sair</string>
+    <string name="btn_signUp">criar conta</string>
+    <string name="btn_signIn">Entrar</string>
+    <string-array name="spin_jobs">
+        <item>Mecânico</item>
+        <item>Encanador</item>
+        <item>Eletricista</item>
+        <item>Pedreiro</item>
+        <item>Técnico em TI</item>
+    </string-array>
+
 </resources>
