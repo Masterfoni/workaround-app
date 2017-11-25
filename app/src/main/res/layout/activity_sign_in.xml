@@ -11,14 +11,14 @@
         android:id="@+id/editLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:hint="@string/hint_email" />
 
     <EditText
         android:id="@+id/editPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:hint="@string/hint_senha" />
 
     <LinearLayout
