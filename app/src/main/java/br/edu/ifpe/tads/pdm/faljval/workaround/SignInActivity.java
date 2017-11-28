@@ -1,6 +1,7 @@
 package br.edu.ifpe.tads.pdm.faljval.workaround;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,7 +42,7 @@ public class SignInActivity extends AppCompatActivity {
 
     public void btnSignInClick(View view) {
         String pass = edPass.getText().toString();
-        String email = edEmail.getText().toString();
+        final String email = edEmail.getText().toString();
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.signInWithEmailAndPassword(email, pass)

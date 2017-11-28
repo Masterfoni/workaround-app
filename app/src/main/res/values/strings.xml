@@ -20,4 +20,8 @@
         <item>Técnico em TI</item>
     </string-array>
 
+    <string name="menu_abrir">Abrir</string>
+    <string name="menu_fechar">Fechar</string>
+    <string name="menu_perfil">Perfil</string>
+    <string name="menu_sair">Sair</string>
 </resources>
