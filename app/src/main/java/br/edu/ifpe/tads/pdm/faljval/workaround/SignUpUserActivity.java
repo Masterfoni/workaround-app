@@ -1,5 +1,6 @@
 package br.edu.ifpe.tads.pdm.faljval.workaround;
 
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,12 +56,18 @@ public class SignUpUserActivity extends AppCompatActivity {
             return;
         }
 
+        final ProgressDialog progressDialog = new ProgressDialog(SignUpUserActivity.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Criando sua conta...");
+        progressDialog.show();
+
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        String msg = task.isSuccessful() ? "SIGN UP OK!" : "SIGN UP ERROR!";
+                        progressDialog.dismiss();
+                        String msg = task.isSuccessful() ? "Cadastro realizado com sucesso!!" : "Ocorreu um problema com a requisição!";
                         Toast.makeText(SignUpUserActivity.this, msg, Toast.LENGTH_SHORT).show();
 
                         if(task.isSuccessful()){
@@ -79,12 +86,6 @@ public class SignUpUserActivity extends AppCompatActivity {
         botaoCadastrar.setEnabled(true);
     }
 
-    public void validarCadastro() {
-        botaoCadastrar.setEnabled(true);
-        setResult(RESULT_OK, null);
-        finish();
-    }
-
     public boolean validar() {
         boolean valido = true;
 
@@ -93,21 +94,21 @@ public class SignUpUserActivity extends AppCompatActivity {
         String senha = edSenha.getText().toString();
 
         if (nome.isEmpty() || nome.length() < 3) {
-            edNome.setError("at least 3 characters");
+            edNome.setError("Pelo menos 3 caracteres");
             valido = false;
         } else {
             edNome.setError(null);
         }
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            edEmail.setError("enter a valid email address");
+            edEmail.setError("Digite um endereço de e-mail válido");
             valido = false;
         } else {
             edEmail.setError(null);
         }
 
-        if (senha.isEmpty() || senha.length() < 4 || senha.length() > 10) {
-            edSenha.setError("between 4 and 10 alphanumeric characters");
+        if (senha.isEmpty() || senha.length() < 4) {
+            edSenha.setError("Pelo menos 4 caracteres");
             valido = false;
         } else {
             edSenha.setError(null);
