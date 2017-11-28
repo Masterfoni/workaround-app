@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -29,19 +29,24 @@
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@null"
                 android:contentDescription="@string/imgbtn_worker"
                 android:onClick="imgbtnWorkerClick"
-                app:srcCompat="@mipmap/ic_launcher_foreground" />
+                app:srcCompat="@drawable/ic_worker_avatar"
+                android:id="@+id/imageButton" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="@string/txt_worker" />
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/imageButton"
+                android:text="@string/txt_worker"
+                android:textAlignment="center" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -50,17 +55,22 @@
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_launcher_foreground"
+                android:layout_centerInParent="true"
+                android:background="@null"
+                android:contentDescription="@string/imgbtn_user"
                 android:onClick="imgbtnUserClick"
-                android:contentDescription="@string/imgbtn_user" />
+                app:srcCompat="@drawable/ic_user_avatar"
+                android:id="@+id/imageButton2" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="@string/txt_usuario" />
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/imageButton2"
+                android:text="@string/txt_usuario"
+                android:textAlignment="center" />
 
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>

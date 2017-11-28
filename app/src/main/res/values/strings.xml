@@ -6,7 +6,7 @@
     <string name="txt_btnSignUp">Cadastrar</string>
     <string name="imgbtn_worker">worker</string>
     <string name="imgbtn_user">user</string>
-    <string name="txt_escolhaPerfil">Escolha o perfil:</string>
+    <string name="txt_escolhaPerfil">Escolha seu Perfil</string>
     <string name="txt_worker">Worker</string>
     <string name="txt_usuario">Usuário</string>
     <string name="btn_logout">Sair</string>
