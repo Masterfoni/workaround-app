@@ -11,12 +11,14 @@ public class User  {
 
     private String nome;
     private String email;
+    private boolean worker;
 
     public User () {}
 
-    public User (String nome, String email) {
+    public User (String nome, String email, boolean worker) {
         this.nome = nome;
         this.email = email;
+        this.worker = worker;
     }
 
     public String getNome() {
@@ -25,5 +27,9 @@ public class User  {
 
     public String getEmail() {
         return email;
+    }
+
+    public boolean isWorker() {
+        return worker;
     }
 }
