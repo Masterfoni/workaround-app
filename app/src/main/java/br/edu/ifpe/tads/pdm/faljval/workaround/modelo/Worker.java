@@ -10,14 +10,14 @@ import com.google.firebase.database.IgnoreExtraProperties;
 public class Worker {
     private String nome;
     private String email;
-    private String tipo;
+    private String atividade;
 
     public Worker(){}
 
-    public Worker(String nome, String email, String tipo){
+    public Worker(String nome, String email, String atividade){
         this.nome = nome;
         this.email = email;
-        this.tipo = tipo;
+        this.atividade = atividade;
     }
 
     public String getNome() {
@@ -28,7 +28,7 @@ public class Worker {
         return email;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getAtividade() {
+        return atividade;
     }
 }
