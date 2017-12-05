@@ -1,11 +1,13 @@
 package br.edu.ifpe.tads.pdm.faljval.workaround;
 
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -29,6 +31,8 @@ public class SignUpWorkerActivity extends AppCompatActivity {
     private EditText edNome;
     private String tipo;
 
+    private Button botaoCadastrar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +54,14 @@ public class SignUpWorkerActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {            }
+            public void onNothingSelected(AdapterView<?> adapterView) {}
         });
 
         edEmail = (EditText) findViewById(R.id.edit_email);
         edSenha = (EditText) findViewById(R.id.edit_senha);
         edNome = (EditText) findViewById(R.id.edit_nome);
+
+        botaoCadastrar = (Button) findViewById(R.id.btn_cadastrar_worker);
     }
 
     @Override
@@ -69,26 +75,73 @@ public class SignUpWorkerActivity extends AppCompatActivity {
         mAuth.removeAuthStateListener(authListener);
     }
 
+    public boolean validar() {
+        boolean valido = true;
+
+        String nome = edNome.getText().toString();
+        String email = edEmail.getText().toString();
+        String senha = edSenha.getText().toString();
+
+        if (nome.isEmpty() || nome.length() < 3) {
+            edNome.setError("Pelo menos 3 caracteres");
+            valido = false;
+        } else {
+            edNome.setError(null);
+        }
+
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            edEmail.setError("Digite um endereço de e-mail válido");
+            valido = false;
+        } else {
+            edEmail.setError(null);
+        }
+
+        if (senha.isEmpty() || senha.length() < 8) {
+            edSenha.setError("Pelo menos 8 caracteres");
+            valido = false;
+        } else {
+            edSenha.setError(null);
+        }
+
+        return valido;
+    }
+
+    public void invalidarCadastro() {
+        Toast.makeText(getBaseContext(), "Falha ao cadastrar", Toast.LENGTH_LONG).show();
+
+        botaoCadastrar.setEnabled(true);
+    }
+
     public void btnCadastrarClick(View view) {
         final String email = edEmail.getText().toString();
         final String password = edSenha.getText().toString();
         final String nome = edNome.getText().toString();
 
-        final FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        String msg = task.isSuccessful() ? "SIGN UP OK!" : "SIGN UP ERROR!";
-                        Toast.makeText(SignUpWorkerActivity.this, msg, Toast.LENGTH_SHORT).show();
+        if(!validar()) {
+            invalidarCadastro();
+            return;
+        }
 
-                        if(task.isSuccessful()){
-                            Worker tempWorker = new Worker(nome, email, tipo);
-                            DatabaseReference drUsers = FirebaseDatabase.getInstance()
-                                    .getReference("workers" );
-                            drUsers.child(mAuth.getCurrentUser().getUid()).setValue(tempWorker);
-                        }
-                    }
-                });
+        final ProgressDialog progressDialog = new ProgressDialog(SignUpWorkerActivity.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Criando sua conta...");
+        progressDialog.show();
+
+        final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                progressDialog.dismiss();
+                String msg = task.isSuccessful() ? "Cadastro realizado com sucesso!!" : "Ocorreu um problema com a requisição!";
+                Toast.makeText(SignUpWorkerActivity.this, msg, Toast.LENGTH_SHORT).show();
+
+                if(task.isSuccessful()){
+                    Worker tempWorker = new Worker(nome, email, tipo);
+                    DatabaseReference drUsers = FirebaseDatabase.getInstance()
+                            .getReference("workers" );
+                    drUsers.child(mAuth.getCurrentUser().getUid()).setValue(tempWorker);
+                }
+            }
+        });
     }
 }
