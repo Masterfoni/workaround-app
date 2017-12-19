@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import br.edu.ifpe.tads.pdm.faljval.workaround.auth.FirebaseAuthListener;
+import br.edu.ifpe.tads.pdm.faljval.workaround.auth.UserAuth;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.User;
 
 public class SignUpUserActivity extends AppCompatActivity {
@@ -70,10 +71,12 @@ public class SignUpUserActivity extends AppCompatActivity {
             Toast.makeText(SignUpUserActivity.this, msg, Toast.LENGTH_SHORT).show();
 
             if(task.isSuccessful()){
-                User tempUser = new User(nome, email, false);
+                User tempUser = new User(nome, email, false, null);
                 DatabaseReference drUsers = FirebaseDatabase.getInstance()
                         .getReference("users" );
                 drUsers.child(mAuth.getCurrentUser().getUid()).setValue(tempUser);
+                UserAuth userAuth = UserAuth.getInstance();
+                userAuth.setUser(tempUser);
             }
             }
         });
