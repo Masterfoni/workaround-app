@@ -1,40 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="br.edu.ifpe.tads.pdm.faljval.workaround.SignUpWorkerActivity"
-    android:orientation="vertical">
-
-    <EditText
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    tools:context="br.edu.ifpe.tads.pdm.faljval.workaround.SignUpWorkerActivity">
+    
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edit_nome"
-        android:hint="@string/hint_nome"/>
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/edit_email"
-        android:inputType="textEmailAddress"
-        android:hint="@string/hint_email"/>
+        <ImageView android:src="@mipmap/ic_launcher"
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/edit_senha"
-        android:inputType="textPassword"
-        android:hint="@string/hint_senha"/>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/edit_nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:hint="@string/hint_nome" />
+        </android.support.design.widget.TextInputLayout>
 
-    <Spinner
-        android:id="@+id/spin_tipo"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/edit_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="@string/hint_email" />
+        </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_btnSignUp"
-        android:onClick="btnCadastrarClick"/>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/edit_senha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="@string/hint_senha"/>
+        </android.support.design.widget.TextInputLayout>
 
-</LinearLayout>
+        <Spinner
+            android:id="@+id/spin_tipo"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <Button
+            android:id="@+id/btn_cadastrar_worker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_btnSignUp"
+            android:onClick="btnCadastrarClick"/>
+
+    </LinearLayout>
+</ScrollView>

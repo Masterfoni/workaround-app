@@ -62,22 +62,21 @@ public class SignUpUserActivity extends AppCompatActivity {
         progressDialog.show();
 
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
-                        String msg = task.isSuccessful() ? "Cadastro realizado com sucesso!!" : "Ocorreu um problema com a requisição!";
-                        Toast.makeText(SignUpUserActivity.this, msg, Toast.LENGTH_SHORT).show();
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+            progressDialog.dismiss();
+            String msg = task.isSuccessful() ? "Cadastro realizado com sucesso!!" : "Ocorreu um problema com a requisição!";
+            Toast.makeText(SignUpUserActivity.this, msg, Toast.LENGTH_SHORT).show();
 
-                        if(task.isSuccessful()){
-                            User tempUser = new User(nome, email, false);
-                            DatabaseReference drUsers = FirebaseDatabase.getInstance()
-                                    .getReference("users" );
-                            drUsers.child(mAuth.getCurrentUser().getUid()).setValue(tempUser);
-                        }
-                    }
-                });
+            if(task.isSuccessful()){
+                User tempUser = new User(nome, email, false);
+                DatabaseReference drUsers = FirebaseDatabase.getInstance()
+                        .getReference("users" );
+                drUsers.child(mAuth.getCurrentUser().getUid()).setValue(tempUser);
+            }
+            }
+        });
     }
 
     public void invalidarCadastro() {
@@ -107,8 +106,8 @@ public class SignUpUserActivity extends AppCompatActivity {
             edEmail.setError(null);
         }
 
-        if (senha.isEmpty() || senha.length() < 4) {
-            edSenha.setError("Pelo menos 4 caracteres");
+        if (senha.isEmpty() || senha.length() < 8) {
+            edSenha.setError("Pelo menos 8 caracteres");
             valido = false;
         } else {
             edSenha.setError(null);
