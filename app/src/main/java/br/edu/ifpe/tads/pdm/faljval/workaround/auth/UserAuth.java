@@ -23,11 +23,11 @@ public class UserAuth {
     }
 
     public User getUser(){
-        return user;
+        return mInstance.user;
     }
 
     public void setUser(User user){
-        this.user = user;
+        mInstance.user = user;
     }
 
 }

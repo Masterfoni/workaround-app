@@ -24,9 +24,10 @@
         <activity android:name=".SignUpUserActivity" />
         <activity android:name=".EscolhaPerfilActivity" />
         <activity android:name=".SignUpWorkerActivity" />
-        <activity android:name=".SignInActivity"></activity>
+        <activity android:name=".SignInActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".HomeWorkerActivity"></activity>
+        <activity android:name=".HomeWorkerActivity" />
+        <activity android:name=".LoadSignInActivity"></activity>
     </application>
 
 </manifest>

@@ -8,6 +8,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import br.edu.ifpe.tads.pdm.faljval.workaround.HomeActivity;
+import br.edu.ifpe.tads.pdm.faljval.workaround.HomeWorkerActivity;
+import br.edu.ifpe.tads.pdm.faljval.workaround.LoadSignInActivity;
 import br.edu.ifpe.tads.pdm.faljval.workaround.MainActivity;
 import br.edu.ifpe.tads.pdm.faljval.workaround.SignInActivity;
 
@@ -28,10 +30,11 @@ public class FirebaseAuthListener implements FirebaseAuth.AuthStateListener {
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         Intent intent = null;
-        if((user != null) && !(activity instanceof HomeActivity))
-            intent = new Intent(activity, HomeActivity.class);
+        if(user != null)
+            if(!(activity instanceof HomeActivity) && !(activity instanceof HomeWorkerActivity))
+                intent = new Intent(activity, LoadSignInActivity.class);
 
-        if((user == null) && (activity instanceof HomeActivity))
+        if((user == null) && ((activity instanceof HomeActivity) || (activity instanceof HomeWorkerActivity)))
             intent = new Intent(activity, SignInActivity.class);
 
 
