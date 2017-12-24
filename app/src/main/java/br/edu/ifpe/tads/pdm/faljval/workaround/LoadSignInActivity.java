@@ -50,7 +50,7 @@ public class LoadSignInActivity extends AppCompatActivity {
                 if (tempUser != null) {
                     UserAuth.getInstance().setUser(tempUser);
                     Intent intent;
-                    if(tempUser.isWorker())
+                    if(tempUser.getWorker())
                         intent = new Intent(LoadSignInActivity.this, HomeWorkerActivity.class);
                     else
                         intent = new Intent(LoadSignInActivity.this, HomeActivity.class);

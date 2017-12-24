@@ -71,7 +71,7 @@ public class SignUpUserActivity extends AppCompatActivity {
             Toast.makeText(SignUpUserActivity.this, msg, Toast.LENGTH_SHORT).show();
 
             if(task.isSuccessful()){
-                User tempUser = new User(nome, email, false, null);
+                User tempUser = new User(nome, email, false);
                 DatabaseReference drUsers = FirebaseDatabase.getInstance()
                         .getReference("users" );
                 drUsers.child(mAuth.getCurrentUser().getUid()).setValue(tempUser);

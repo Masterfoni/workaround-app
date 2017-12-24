@@ -11,31 +11,37 @@ public class User  {
 
     private String nome;
     private String email;
-    private boolean worker;
-    private String atividade;
+    private Boolean worker;
 
     public User () {}
 
-    public User (String nome, String email, boolean worker, String atividade) {
+    public User (String nome, String email, boolean worker) {
         this.nome = nome;
         this.email = email;
         this.worker = worker;
-        this.atividade = atividade;
     }
 
     public String getNome() {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public String getEmail() {
         return email;
     }
 
-    public boolean isWorker() {
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean getWorker() {
         return worker;
     }
 
-    public String getAtividade() {
-        return atividade;
+    public void setWorker(Boolean worker) {
+        this.worker = worker;
     }
 }

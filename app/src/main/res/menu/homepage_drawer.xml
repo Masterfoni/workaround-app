@@ -7,6 +7,7 @@ tools:showIn="navigation_view">
         android:id="@+id/nav_perfil"
         android:icon="@drawable/ic_perfil"
         android:title="@string/menu_perfil" />
+
     <item
         android:id="@+id/nav_sair"
         android:icon="@drawable/ic_logout"

@@ -7,34 +7,148 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:id="@+id/homeworkerpage"
+    android:theme="@style/AppTheme.NoActionBar"
     tools:openDrawer="start">
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view_worker"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
+        android:layout_gravity="end"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/homepage_drawer">
     </android.support.design.widget.NavigationView>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Home Worker" />
+        <ImageButton
+            android:id="@+id/user_profile_photo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:elevation="5dp"
+            android:padding="10dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_worker_avatar" />
 
-        <Button
-            android:id="@+id/button2"
+        <RelativeLayout
+            android:id="@+id/profile_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sair"
-            android:onClick="BtnSignOutClick"/>
-    </LinearLayout>
+            android:background="@color/roxao"
+            android:elevation="4dp"
+            android:paddingBottom="24dp">
 
+            <Switch
+                android:id="@+id/switch_disponibilidade"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Disponibilidade"
+                android:checked="false"
+                android:onClick="processarSwitch"/>
+
+            <TextView
+                android:id="@+id/nome_worker_perfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="110dp"
+                android:textColor="#fff"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/atividade_worker_perfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nome_worker_perfil"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:textColor="#fff"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/profile_layout">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="20dp"
+                    android:text="TESTE ITEM 1" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="3dp"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="20dp"
+                    android:text="TESTE ITEM 2" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="20dp"
+                    android:text="TESTE ITEM 3" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="3dp"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="20dp"
+                    android:text="TESTE ITEM 3" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="20dp"
+                    android:text="TESTE ITEM 4" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="20dp"
+                    android:text="TESTE ITEM 5" />
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
 </android.support.v4.widget.DrawerLayout>
