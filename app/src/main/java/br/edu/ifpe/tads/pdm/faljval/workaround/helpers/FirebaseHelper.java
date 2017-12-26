@@ -61,12 +61,14 @@ public class FirebaseHelper {
         db.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                fetchData(dataSnapshot);
+                if(dataSnapshot.getKey().equals("users"))
+                    fetchData(dataSnapshot);
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                fetchData(dataSnapshot);
+                if(dataSnapshot.getKey().equals("users"))
+                    fetchData(dataSnapshot);
             }
 
             @Override

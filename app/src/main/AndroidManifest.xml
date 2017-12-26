@@ -26,8 +26,11 @@
         <activity android:name=".SignUpWorkerActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".HomeWorkerActivity" android:launchMode="singleInstance"/>
-        <activity android:name=".LoadSignInActivity"></activity>
+        <activity
+            android:name=".HomeWorkerActivity"
+            android:launchMode="singleInstance" />
+        <activity android:name=".LoadSignInActivity" />
+        <activity android:name=".DetailWorkerActivity"></activity>
     </application>
 
 </manifest>

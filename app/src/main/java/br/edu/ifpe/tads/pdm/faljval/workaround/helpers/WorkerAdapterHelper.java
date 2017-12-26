@@ -2,6 +2,7 @@ package br.edu.ifpe.tads.pdm.faljval.workaround.helpers;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import br.edu.ifpe.tads.pdm.faljval.workaround.DetailWorkerActivity;
 import br.edu.ifpe.tads.pdm.faljval.workaround.R;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Worker;
 
@@ -59,22 +61,22 @@ public class WorkerAdapterHelper extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(c, "DALE LOKO", Toast.LENGTH_SHORT);
+                //Toast.makeText(c, "DALE LOKO", Toast.LENGTH_SHORT).show();
                 //AQUI SERÁ A ABERTURA DA TELA DE DETALHAMENTO DO WORKER + OPÇÕES DE SOLICITAR SERVIÇOS
-                //openDetailActivity(s.getName(),s.getDescription(),s.getPropellant());
+                openDetailActivity(worker.getEmail(), worker.getNome(), worker.getAtividade());
             }
         });
 
         return convertView;
     }
 
-    //OPEN DETAIL ACTIVITY //AO INVES DE DETAILACTIVITY, ABRE DETAILWORKER - TODO
-//    private void openDetailActivity(String...details)
-//    {
-//        Intent i=new Intent(c, DetailActivity.class);
-//        i.putExtra("NAME_KEY",details[0]);
-//        i.putExtra("DESC_KEY",details[1]);
-//        i.putExtra("PROP_KEY",details[2]);
-//        c.startActivity(i);
-//    }
+    // ABRE DETAILWORKER
+    private void openDetailActivity(String...details)
+    {
+        Intent i=new Intent(c, DetailWorkerActivity.class);
+        i.putExtra("EMAIL_KEY",details[0]);
+        i.putExtra("NOME_KEY",details[1]);
+        i.putExtra("ATIVIDADE_KEY",details[2]);
+        c.startActivity(i);
+    }
 }
