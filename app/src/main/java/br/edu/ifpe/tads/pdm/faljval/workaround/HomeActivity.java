@@ -65,7 +65,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         databaseRef = FirebaseDatabase.getInstance().getReference();
         helper = new FirebaseHelper(databaseRef);
 
-        adapter = new WorkerAdapterHelper(this, helper.retrieve());
+        adapter = new WorkerAdapterHelper(this, helper.retrieveWorkers());
         listaWorkers.setAdapter(adapter);
 
         homeSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.home_swipe_refresh);

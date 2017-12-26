@@ -10,12 +10,14 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.ArrayList;
 
 import br.edu.ifpe.tads.pdm.faljval.workaround.R;
+import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Service;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Worker;
 
 public class FirebaseHelper {
     DatabaseReference db;
     Boolean saved = null;
     ArrayList<Worker> workers = new ArrayList<>();
+    ArrayList<Service> services = new ArrayList<>();
 
     public FirebaseHelper(DatabaseReference db) {
         this.db = db;
@@ -42,7 +44,7 @@ public class FirebaseHelper {
         return saved;
     }
 
-    private void fetchData(DataSnapshot dataSnapshot)
+    private void fetchDataWorkerOn(DataSnapshot dataSnapshot)
     {
         workers.clear();
         for (DataSnapshot ds : dataSnapshot.getChildren())
@@ -56,19 +58,48 @@ public class FirebaseHelper {
         }
     }
 
-    public ArrayList<Worker> retrieve() {
+    private void fetchDataServicesTo(String param, DataSnapshot dataSnapshot)
+    {
+        services.clear();
+        for (DataSnapshot ds : dataSnapshot.getChildren())
+        {
+            Service service = ds.getValue(Service.class);
 
+            if(service.getWorker().equals(param))
+            {
+                services.add(service);
+            }
+        }
+    }
+
+    public ArrayList<Worker> retrieveWorkers () {
+        adicionarlistener("") ;
+        return workers;
+    }
+
+    public ArrayList<Service> retrieveServices(String param) {
+        adicionarlistener(param) ;
+        return services;
+    }
+
+    private void adicionarlistener(final String param) {
         db.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 if(dataSnapshot.getKey().equals("users"))
-                    fetchData(dataSnapshot);
+                    fetchDataWorkerOn(dataSnapshot);
+                if(dataSnapshot.getKey().equals("services"))
+                    fetchDataServicesTo(param, dataSnapshot);
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                if(dataSnapshot.getKey().equals("users"))
-                    fetchData(dataSnapshot);
+                if(dataSnapshot.getKey().equals("users")) {
+                    fetchDataWorkerOn(dataSnapshot);
+                }
+                if(dataSnapshot.getKey().equals("services")) {
+                    fetchDataServicesTo(param, dataSnapshot);
+                }
             }
 
             @Override
@@ -81,6 +112,5 @@ public class FirebaseHelper {
             public void onCancelled(DatabaseError databaseError) {}
         });
 
-        return workers;
     }
 }

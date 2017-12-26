@@ -8,11 +8,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import br.edu.ifpe.tads.pdm.faljval.workaround.auth.FirebaseAuthListener;
 import br.edu.ifpe.tads.pdm.faljval.workaround.auth.UserAuth;
+import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.FirebaseHelper;
+import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.ServiceAdapterHelper;
+import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.WorkerAdapterHelper;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Worker;
 
 public class HomeWorkerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,6 +40,13 @@ public class HomeWorkerActivity extends AppCompatActivity implements NavigationV
     private FirebaseAuthListener authListener;
     private DrawerLayout menuDrawer;
     private ActionBarDrawerToggle menuToggle;
+
+    private SwipeRefreshLayout homeSwipeRefreshLayout;
+    private ServiceAdapterHelper adapter;
+
+    private ListView listaServices;
+    private DatabaseReference databaseRef;
+    private FirebaseHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +63,23 @@ public class HomeWorkerActivity extends AppCompatActivity implements NavigationV
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_worker);
         navigationView.setNavigationItemSelectedListener(this);
+
+        listaServices = findViewById(R.id.lv_services);
+
+        databaseRef = FirebaseDatabase.getInstance().getReference();
+        helper = new FirebaseHelper(databaseRef);
+
+        adapter = new ServiceAdapterHelper(this, helper.retrieveServices(mAuth.getCurrentUser().getEmail()));
+        listaServices.setAdapter(adapter);
+
+        homeSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.home_worker_swipe_refresh);
+        homeSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.notifyDataSetChanged();
+                homeSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         setupUserInfo();
     }
