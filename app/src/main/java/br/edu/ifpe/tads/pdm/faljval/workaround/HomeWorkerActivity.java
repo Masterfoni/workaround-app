@@ -29,7 +29,8 @@ import br.edu.ifpe.tads.pdm.faljval.workaround.auth.FirebaseAuthListener;
 import br.edu.ifpe.tads.pdm.faljval.workaround.auth.UserAuth;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Worker;
 
-public class HomeWorkerActivity extends AppCompatActivity {
+public class HomeWorkerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
     private FirebaseAuth mAuth;
     private FirebaseAuthListener authListener;
     private DrawerLayout menuDrawer;
@@ -48,21 +49,8 @@ public class HomeWorkerActivity extends AppCompatActivity {
         menuDrawer.addDrawerListener(menuToggle);
         menuToggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view_worker);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId() == R.id.nav_sair)
-                {
-                    BtnSignOutClick(findViewById(R.id.homeworkerpage));
-                }
-
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.homeworkerpage);
-                drawer.closeDrawer(GravityCompat.START);
-
-                return true;
-            }
-        });
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_worker);
+        navigationView.setNavigationItemSelectedListener(this);
 
         setupUserInfo();
     }
@@ -109,12 +97,31 @@ public class HomeWorkerActivity extends AppCompatActivity {
     }
 
     public void BtnSignOutClick(View view) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+
         if(user != null){
             mAuth.signOut();
         } else {
             Toast.makeText(this, "ERROR!", Toast.LENGTH_SHORT);
         }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.nav_sair) {
+            Toast.makeText(this, "EITA", Toast.LENGTH_SHORT);
+            BtnSignOutClick(findViewById(R.id.homeworkerpage));
+        }
+        else
+        {
+            Toast.makeText(this, "UOUPA", Toast.LENGTH_SHORT);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.homeworkerpage);
+        drawer.closeDrawer(GravityCompat.START);
+
+        return true;
     }
 
     @Override

@@ -5,20 +5,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:id="@+id/homepage"
     android:orientation="vertical"
+    android:id="@+id/homepage"
+    android:theme="@style/AppTheme.NoActionBar"
     tools:openDrawer="start">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/user_profile_photo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:elevation="5dp"
+            android:padding="10dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_user_avatar" />
+
+        <RelativeLayout
+            android:id="@+id/profile_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/verdeBolado"
+            android:elevation="4dp"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:id="@+id/nome_cliente_perfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="110dp"
+                android:textColor="#1c1818"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/email_cliente_perfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nome_cliente_perfil"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:textColor="#1c1818"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <include android:layout_below="@+id/profile_layout"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 layout="@layout/content_main_cliente"/>
+
+    </RelativeLayout>
+
     <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
+        android:id="@+id/nav_view_cliente"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/homepage_drawer"
-        >
-
+        app:menu="@menu/homepage_drawer">
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
