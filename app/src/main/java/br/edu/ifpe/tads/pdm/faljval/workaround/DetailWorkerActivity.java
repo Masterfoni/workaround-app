@@ -1,11 +1,17 @@
 package br.edu.ifpe.tads.pdm.faljval.workaround;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -50,6 +56,24 @@ public class DetailWorkerActivity extends AppCompatActivity {
         FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
         drServicos = fbDB.getReference();
         Service service = new Service(emailWorker, mAuth.getCurrentUser().getEmail());
-        drServicos.child("services").push().setValue(service);
+
+        final ProgressDialog progressDialog = new ProgressDialog(DetailWorkerActivity.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Realizando solicitação...");
+        progressDialog.show();
+
+
+        drServicos.child("services").push().setValue(service).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                progressDialog.dismiss();
+                String msg = task.isSuccessful() ? "Solicitação feita com sucesso!" : "Ocorreu um problema com a solicitação!";
+                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+
+                if(task.isSuccessful()){
+                    finish();
+                }
+            }
+        });
     }
 }
