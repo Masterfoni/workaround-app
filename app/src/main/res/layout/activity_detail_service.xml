@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.edu.ifpe.tads.pdm.faljval.workaround.DetailWorkerActivity">
+    tools:context="br.edu.ifpe.tads.pdm.faljval.workaround.DetailServiceActivity">
 
     <ImageButton
         android:id="@+id/user_profile_photo"
@@ -15,7 +15,7 @@
         android:elevation="5dp"
         android:padding="10dp"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/ic_worker_avatar" />
+        app:srcCompat="@drawable/ic_user_avatar" />
 
     <RelativeLayout
         android:id="@+id/profile_layout"
@@ -25,7 +25,7 @@
         android:paddingBottom="24dp">
 
         <TextView
-            android:id="@+id/nome_worker_detail"
+            android:id="@+id/cliente_service_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -35,20 +35,10 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/atividade_worker_detail"
+            android:id="@+id/status_service_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/nome_worker_detail"
-            android:textColor="#fff"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/email_worker_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/atividade_worker_detail"
+            android:layout_below="@+id/cliente_service_detail"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="12dp"
             android:textColor="#fff"
@@ -62,20 +52,20 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/service_Btn_Vermelho"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/vermelhoSuave"
-            android:text="Cancelar"
-            android:onClick="btnCancelSolicitarWorker"/>
+            android:text="Rejeitar Serviço" />
 
         <Button
+            android:id="@+id/service_Btn_Verde"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/verdeBolado"
-            android:text="Solicitar Serviço"
-            android:onClick="btnSolicitarWorker"/>
+            android:text="Aceitar Serviço" />
 
     </LinearLayout>
 </RelativeLayout>

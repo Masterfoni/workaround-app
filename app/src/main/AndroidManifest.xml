@@ -30,7 +30,8 @@
             android:name=".HomeWorkerActivity"
             android:launchMode="singleInstance" />
         <activity android:name=".LoadSignInActivity" />
-        <activity android:name=".DetailWorkerActivity"></activity>
+        <activity android:name=".DetailWorkerActivity" />
+        <activity android:name=".DetailServiceActivity"></activity>
     </application>
 
 </manifest>

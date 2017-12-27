@@ -18,6 +18,7 @@ public class FirebaseHelper {
     Boolean saved = null;
     ArrayList<Worker> workers = new ArrayList<>();
     ArrayList<Service> services = new ArrayList<>();
+    public static final ArrayList<String> keysServices = new ArrayList<>();
 
     public FirebaseHelper(DatabaseReference db) {
         this.db = db;
@@ -61,6 +62,8 @@ public class FirebaseHelper {
     private void fetchDataServicesTo(String param, DataSnapshot dataSnapshot)
     {
         services.clear();
+        keysServices.clear();
+
         for (DataSnapshot ds : dataSnapshot.getChildren())
         {
             Service service = ds.getValue(Service.class);
@@ -68,6 +71,7 @@ public class FirebaseHelper {
             if(service.getWorker().equals(param))
             {
                 services.add(service);
+                keysServices.add(ds.getKey());
             }
         }
     }

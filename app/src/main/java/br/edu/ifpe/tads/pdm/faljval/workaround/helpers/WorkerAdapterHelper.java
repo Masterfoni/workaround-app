@@ -61,7 +61,6 @@ public class WorkerAdapterHelper extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(c, "DALE LOKO", Toast.LENGTH_SHORT).show();
                 //AQUI SERÁ A ABERTURA DA TELA DE DETALHAMENTO DO WORKER + OPÇÕES DE SOLICITAR SERVIÇOS
                 openDetailActivity(worker.getEmail(), worker.getNome(), worker.getAtividade());
             }
