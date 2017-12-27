@@ -86,7 +86,7 @@ public class DetailServiceActivity extends AppCompatActivity {
                     finish();
                 }
             });
-        }else if (!isAccepted && !isFinished && isWorking) {
+        }else if (!isAccepted && isFinished && !isWorking) {
             tvStatus.setText("Rejeitado.");
 
             btnVerde.setText("Ok");
