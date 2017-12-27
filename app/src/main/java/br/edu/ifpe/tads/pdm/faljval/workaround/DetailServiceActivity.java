@@ -1,6 +1,7 @@
 package br.edu.ifpe.tads.pdm.faljval.workaround;
 
 import android.content.Intent;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -91,16 +92,48 @@ public class DetailServiceActivity extends AppCompatActivity {
 
             btnVerde.setText("Ok");
             btnVermelho.setText("Voltar");
+            btnVerde.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
+
+            btnVermelho.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
         }else {
             tvStatus.setText("Finalizado");
 
             btnVerde.setText("Ok");
             btnVermelho.setText("Voltar");
+            btnVerde.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
+
+            btnVermelho.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
         }
 
 
         FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
         drServicos = fbDB.getReference("services");
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(this, HomeWorkerActivity.class);
+        startActivity(i);
     }
 
     private void finalizarService(View view) {

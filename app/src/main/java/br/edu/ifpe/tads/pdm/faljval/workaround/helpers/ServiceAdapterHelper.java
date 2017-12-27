@@ -64,13 +64,13 @@ public class ServiceAdapterHelper extends BaseAdapter{
         nomeTxt.setText(service.getCliente());
 
         if (!service.isAccepted() && !service.isFinished() && !service.isWorking())
-            ativiTxt.setText("Novo.");
+            ativiTxt.setText("Novo");
 
         if (service.isAccepted() && !service.isFinished() && service.isWorking())
-            ativiTxt.setText("Em execução.");
+            ativiTxt.setText("Em execução");
 
-        if (!service.isAccepted() && !service.isFinished() && service.isWorking())
-            ativiTxt.setText("Rejeitado.");
+        if (!service.isAccepted() && service.isFinished() && !service.isWorking())
+            ativiTxt.setText("Rejeitado");
 
         if (service.isAccepted() && service.isFinished() && !service.isWorking())
             ativiTxt.setText("Finalizado");

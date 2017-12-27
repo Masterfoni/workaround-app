@@ -120,11 +120,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if (menuDrawer.isDrawerOpen(GravityCompat.START)) {
-            menuDrawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        finish();
     }
 
     @Override

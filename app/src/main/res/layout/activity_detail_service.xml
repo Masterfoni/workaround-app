@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/roxao"
-        android:paddingBottom="24dp">
+        android:paddingBottom="12dp">
 
         <TextView
             android:id="@+id/cliente_service_detail"
@@ -48,8 +48,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profile_layout"
-        android:orientation="horizontal">
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        >
 
         <Button
             android:id="@+id/service_Btn_Vermelho"

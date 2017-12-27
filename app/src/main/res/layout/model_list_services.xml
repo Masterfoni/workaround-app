@@ -44,7 +44,6 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/verdeBolado"
-                android:text="Atividade"
                 android:lines="3"
                 android:id="@+id/atividade_worker_txt"
                 android:padding="10dp"
