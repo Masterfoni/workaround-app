@@ -63,4 +63,10 @@ public class LoadSignInActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) { }
         });
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
 }
