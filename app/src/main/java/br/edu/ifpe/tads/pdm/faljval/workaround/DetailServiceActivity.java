@@ -27,6 +27,9 @@ public class DetailServiceActivity extends AppCompatActivity {
     private Service service;
     private String emailWorker;
     private String emailCliente;
+    private String nomeServico;
+    private String descServico;
+    private String localServico;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +40,26 @@ public class DetailServiceActivity extends AppCompatActivity {
         pos = i.getIntExtra("POS_KEY", 0);
         emailWorker = i.getStringExtra("WORKER_KEY");
         emailCliente = i.getStringExtra("CLIENTE_KEY");
+        nomeServico = i.getStringExtra("NOME_KEY");
+        descServico = i.getStringExtra("DESC_KEY");
+        localServico = i.getStringExtra("LOCAL_KEY");
         Boolean isAccepted = i.getBooleanExtra("ACC_KEY", false);
         Boolean isWorking = i.getBooleanExtra("WORK_KEY", false);
         Boolean isFinished = i.getBooleanExtra("END_KEY", false);
 
         TextView tvCliente = findViewById(R.id.cliente_service_detail);
         TextView tvStatus = findViewById(R.id.status_service_detail);
+        TextView tvNome = findViewById(R.id.tv_nomeService);
+        TextView tvDesc = findViewById(R.id.tv_descService);
+        TextView tvLocal = findViewById(R.id.tv_localService);
 
         Button btnVerde = findViewById(R.id.service_Btn_Verde);
         Button btnVermelho = findViewById(R.id.service_Btn_Vermelho);
 
         tvCliente.setText(emailCliente);
+        tvNome.setText(nomeServico);
+        tvDesc.setText(descServico);
+        tvLocal.setText(localServico);
 
         if (!isAccepted && !isFinished && !isWorking) {
             tvStatus.setText("Novo!");

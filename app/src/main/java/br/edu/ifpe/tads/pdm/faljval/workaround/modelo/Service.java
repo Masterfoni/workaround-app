@@ -11,6 +11,9 @@ public class Service {
 
     private String worker;
     private String cliente;
+    private String nome;
+    private String descricao;
+    private String local;
     private boolean accepted;
     private boolean finished;
     private boolean working;
@@ -18,9 +21,12 @@ public class Service {
     public Service() {
     }
 
-    public Service(String worker, String cliente) {
+    public Service(String worker, String cliente, String nome, String descricao, String local) {
         this.worker = worker;
         this.cliente = cliente;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.local = local;
         accepted = false;
         finished = false;
         working = false;
@@ -64,5 +70,33 @@ public class Service {
 
     public void setWorking(boolean working) {
         this.working = working;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getLocal() {
+        return local;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
+    }
+
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
     }
 }

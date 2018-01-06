@@ -30,7 +30,7 @@
             android:name=".HomeWorkerActivity"
             android:launchMode="singleInstance" />
         <activity android:name=".LoadSignInActivity" />
-        <activity android:name=".DetailWorkerActivity" />
+        <activity android:name=".DetailWorkerActivity"  android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
         <activity android:name=".DetailServiceActivity"></activity>
     </application>
 

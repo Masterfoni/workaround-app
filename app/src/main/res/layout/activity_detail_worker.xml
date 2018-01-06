@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="br.edu.ifpe.tads.pdm.faljval.workaround.DetailWorkerActivity">
 
     <ImageButton
         android:id="@+id/user_profile_photo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:background="@android:color/transparent"
         android:elevation="5dp"
@@ -38,8 +42,8 @@
             android:id="@+id/atividade_worker_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_below="@+id/nome_worker_detail"
+            android:layout_centerHorizontal="true"
             android:textColor="#fff"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -58,24 +62,65 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:layout_below="@+id/profile_layout"
+        android:orientation="vertical"
+        android:scrollbars="vertical">
 
-        <Button
-            android:layout_width="0dp"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/vermelhoSuave"
-            android:text="Cancelar"
-            android:onClick="btnCancelSolicitarWorker"/>
+            android:text="@string/txt_tituloservico" />
 
-        <Button
-            android:layout_width="0dp"
+        <EditText
+            android:id="@+id/et_servico"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/hint_titulservico" />
+
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/verdeBolado"
-            android:text="Solicitar Serviço"
-            android:onClick="btnSolicitarWorker"/>
+            android:text="@string/txt_descservico" />
 
+        <EditText
+            android:id="@+id/et_descservico"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/hint_descservico"
+            android:lines="5"
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_localservico" />
+
+        <EditText
+            android:id="@+id/et_localservico"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/hint_localervico" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/vermelhoSuave"
+                android:onClick="btnCancelSolicitarWorker"
+                android:text="Cancelar" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/verdeBolado"
+                android:onClick="btnSolicitarWorker"
+                android:text="Solicitar Serviço" />
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
+</ScrollView>

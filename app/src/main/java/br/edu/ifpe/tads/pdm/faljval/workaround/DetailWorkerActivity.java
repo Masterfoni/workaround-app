@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +56,15 @@ public class DetailWorkerActivity extends AppCompatActivity {
 
         FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
         drServicos = fbDB.getReference();
-        Service service = new Service(emailWorker, mAuth.getCurrentUser().getEmail());
+
+        EditText etNomeServico = findViewById(R.id.et_servico);
+        EditText etDescServico = findViewById(R.id.et_descservico);
+        EditText etLocalServico = findViewById(R.id.et_localservico);
+
+        Service service = new Service(emailWorker, mAuth.getCurrentUser().getEmail(),
+                etNomeServico.getText().toString(),
+                etDescServico.getText().toString(),
+                etLocalServico.getText().toString());
 
         final ProgressDialog progressDialog = new ProgressDialog(DetailWorkerActivity.this);
         progressDialog.setIndeterminate(true);
