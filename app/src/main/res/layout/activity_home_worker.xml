@@ -64,7 +64,39 @@
                 android:textSize="14sp" />
         </RelativeLayout>
 
-        <include android:layout_below="@+id/profile_layout"
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_below="@+id/profile_layout"
+            android:id="@+id/shimmer_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/model_list_shimmer"/>
+
+            <include
+                android:layout_marginTop="90dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/model_list_shimmer"/>
+
+            <include
+                android:layout_marginTop="180dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/model_list_shimmer"/>
+
+            <include
+                android:layout_marginTop="270dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/model_list_shimmer"/>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <include android:layout_margin="0dp"
+            android:layout_below="@+id/profile_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/content_main_worker"/>

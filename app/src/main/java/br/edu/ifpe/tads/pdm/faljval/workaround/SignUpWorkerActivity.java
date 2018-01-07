@@ -21,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import br.edu.ifpe.tads.pdm.faljval.workaround.auth.FirebaseAuthListener;
 import br.edu.ifpe.tads.pdm.faljval.workaround.auth.UserAuth;
-import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.User;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Worker;
 
 public class SignUpWorkerActivity extends AppCompatActivity {

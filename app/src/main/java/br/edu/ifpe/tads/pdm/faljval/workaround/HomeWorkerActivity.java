@@ -1,15 +1,12 @@
 package br.edu.ifpe.tads.pdm.faljval.workaround;
 
-import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
+import android.content.DialogInterface;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -21,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +29,7 @@ import br.edu.ifpe.tads.pdm.faljval.workaround.auth.FirebaseAuthListener;
 import br.edu.ifpe.tads.pdm.faljval.workaround.auth.UserAuth;
 import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.FirebaseHelper;
 import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.ServiceAdapterHelper;
-import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.WorkerAdapterHelper;
+import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Service;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Worker;
 
 public class HomeWorkerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -76,12 +74,56 @@ public class HomeWorkerActivity extends AppCompatActivity implements NavigationV
         homeSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                findViewById(R.id.shimmer_view_container).setVisibility(View.GONE);
                 adapter.notifyDataSetChanged();
                 homeSwipeRefreshLayout.setRefreshing(false);
             }
         });
 
         setupUserInfo();
+        subscribeNotifications();
+    }
+
+    public void subscribeNotifications() {
+        FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
+
+        fbDB.getReference().child("services").addChildEventListener(new ChildEventListener() {
+
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Service serviceAdded = dataSnapshot.getValue(Service.class);
+
+                if(serviceAdded.getWorker().equals(UserAuth.getInstance().getUser().getEmail()))
+                {
+                    notifyWorker("Você recebeu uma nova solicitação de serviço do usuário de e-mail:" + serviceAdded.getCliente());
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
+    }
+
+    public void notifyWorker(String message) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage(message);
+        alertDialogBuilder.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {}
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     public void processarSwitch(View view) {
