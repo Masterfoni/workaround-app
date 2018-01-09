@@ -1,7 +1,6 @@
 package br.edu.ifpe.tads.pdm.faljval.workaround;
 
 import android.app.ProgressDialog;
-import android.app.Service;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import br.edu.ifpe.tads.pdm.faljval.workaround.auth.UserAuth;
+import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.NotificationService;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.User;
 
 public class LoadSignInActivity extends AppCompatActivity {

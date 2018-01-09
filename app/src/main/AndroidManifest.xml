@@ -35,7 +35,7 @@
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity android:name=".DetailServiceActivity" />
 
-        <service android:name=".NotificationService" />
+        <service android:name=".helpers.NotificationService" />
     </application>
 
 </manifest>

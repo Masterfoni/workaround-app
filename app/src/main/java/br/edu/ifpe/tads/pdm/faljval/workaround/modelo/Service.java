@@ -2,10 +2,6 @@ package br.edu.ifpe.tads.pdm.faljval.workaround.modelo;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
-/**
- * Created by Felipe Lima on 26/12/2017.
- */
-
 @IgnoreExtraProperties
 public class Service {
 

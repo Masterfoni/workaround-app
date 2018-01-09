@@ -81,49 +81,6 @@ public class HomeWorkerActivity extends AppCompatActivity implements NavigationV
         });
 
         setupUserInfo();
-        subscribeNotifications();
-    }
-
-    public void subscribeNotifications() {
-        FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
-
-        fbDB.getReference().child("services").addChildEventListener(new ChildEventListener() {
-
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Service serviceAdded = dataSnapshot.getValue(Service.class);
-
-                if(serviceAdded.getWorker().equals(UserAuth.getInstance().getUser().getEmail()))
-                {
-                    notifyWorker("Você recebeu uma nova solicitação de serviço do usuário de e-mail:" + serviceAdded.getCliente());
-                }
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {}
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        });
-    }
-
-    public void notifyWorker(String message) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage(message);
-        alertDialogBuilder.setPositiveButton("OK",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {}
-                });
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
     }
 
     public void processarSwitch(View view) {

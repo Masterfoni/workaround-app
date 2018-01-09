@@ -6,7 +6,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,7 +17,6 @@ import android.widget.Toast;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,8 +27,6 @@ import br.edu.ifpe.tads.pdm.faljval.workaround.auth.FirebaseAuthListener;
 import br.edu.ifpe.tads.pdm.faljval.workaround.auth.UserAuth;
 import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.FirebaseHelper;
 import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.WorkerAdapterHelper;
-import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.EnumStatusServico;
-import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Service;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.User;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -88,51 +84,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         container.startShimmerAnimation();
 
         setupUserInfo();
-        subscribeNotifications();
-    }
-
-    public void subscribeNotifications() {
-        FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
-
-        fbDB.getReference().child("services").addChildEventListener(new ChildEventListener() {
-
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Service serviceChanged = dataSnapshot.getValue(Service.class);
-
-                if(UserAuth.getInstance().getUser().getEmail().equals(serviceChanged.getCliente()))
-                {
-                    if(EnumStatusServico.ACCEPTED == serviceChanged.getStatus())
-                    {
-                        notifyUser("O worker de email: " + serviceChanged.getWorker() + ", aceitou o serviço!");
-                    }
-                    else
-                    {
-                        notifyUser("O worker de email: " + serviceChanged.getWorker() + ", rejeitou o serviço!");
-                    }
-                }
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
     public void setupUserInfo() {
@@ -163,19 +114,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-    }
-
-    public void notifyUser(String message) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage(message);
-                alertDialogBuilder.setPositiveButton("OK",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface arg0, int arg1) {}
-                        });
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
     }
 
     @Override
