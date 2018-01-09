@@ -10,22 +10,20 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-
 import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.FirebaseHelper;
+import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.EnumStatusServico;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Service;
 
 public class DetailServiceActivity extends AppCompatActivity {
 
     private DatabaseReference drServicos;
-    private ArrayList<Service> services;
     private int pos;
-    private Service service;
     private String emailWorker;
     private String emailCliente;
     private String nomeServico;
     private String descServico;
     private String localServico;
+    private int status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +37,7 @@ public class DetailServiceActivity extends AppCompatActivity {
         nomeServico = i.getStringExtra("NOME_KEY");
         descServico = i.getStringExtra("DESC_KEY");
         localServico = i.getStringExtra("LOCAL_KEY");
-        Boolean isAccepted = i.getBooleanExtra("ACC_KEY", false);
-        Boolean isWorking = i.getBooleanExtra("WORK_KEY", false);
-        Boolean isFinished = i.getBooleanExtra("END_KEY", false);
+        status = i.getIntExtra("STATUS_KEY", EnumStatusServico.PENDING);
 
         TextView tvCliente = findViewById(R.id.cliente_service_detail);
         TextView tvStatus = findViewById(R.id.status_service_detail);
@@ -57,7 +53,8 @@ public class DetailServiceActivity extends AppCompatActivity {
         tvDesc.setText(descServico);
         tvLocal.setText(localServico);
 
-        if (!isAccepted && !isFinished && !isWorking) {
+        if (status == EnumStatusServico.PENDING)
+        {
             tvStatus.setText("Novo!");
 
             btnVerde.setText("Aceitar Serviço");
@@ -76,7 +73,9 @@ public class DetailServiceActivity extends AppCompatActivity {
                     rejeitarService(view);
                 }
             });
-        }else if (isAccepted && !isFinished && isWorking) {
+        }
+        else if (status == EnumStatusServico.ACCEPTED)
+        {
             tvStatus.setText("Em execução.");
 
             btnVerde.setText("Finalizar Serviço");
@@ -95,7 +94,9 @@ public class DetailServiceActivity extends AppCompatActivity {
                     finish();
                 }
             });
-        }else if (!isAccepted && isFinished && !isWorking) {
+        }
+        else if (status == EnumStatusServico.REJECTED)
+        {
             tvStatus.setText("Rejeitado.");
 
             btnVerde.setText("Ok");
@@ -113,7 +114,9 @@ public class DetailServiceActivity extends AppCompatActivity {
                     finish();
                 }
             });
-        }else {
+        }
+        else
+        {
             tvStatus.setText("Finalizado");
 
             btnVerde.setText("Ok");
@@ -133,7 +136,6 @@ public class DetailServiceActivity extends AppCompatActivity {
             });
         }
 
-
         FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
         drServicos = fbDB.getReference("services");
     }
@@ -148,9 +150,7 @@ public class DetailServiceActivity extends AppCompatActivity {
         Service service = new Service();
         service.setWorker(emailWorker);
         service.setCliente(emailCliente);
-        service.setWorking(false);
-        service.setAcepted(true);
-        service.setFinished(true);
+        service.setStatus(EnumStatusServico.FINISHED);
         drServicos.child(FirebaseHelper.keysServices.get(pos)).setValue(service);
         finish();
     }
@@ -159,9 +159,7 @@ public class DetailServiceActivity extends AppCompatActivity {
         Service service = new Service();
         service.setWorker(emailWorker);
         service.setCliente(emailCliente);
-        service.setWorking(false);
-        service.setAcepted(false);
-        service.setFinished(true);
+        service.setStatus(EnumStatusServico.REJECTED);
         drServicos.child(FirebaseHelper.keysServices.get(pos)).setValue(service);
         finish();
     }
@@ -170,9 +168,7 @@ public class DetailServiceActivity extends AppCompatActivity {
         Service service = new Service();
         service.setWorker(emailWorker);
         service.setCliente(emailCliente);
-        service.setWorking(true);
-        service.setAcepted(true);
-        service.setFinished(false);
+        service.setStatus(EnumStatusServico.ACCEPTED);
         drServicos.child(FirebaseHelper.keysServices.get(pos)).setValue(service);
         finish();
     }

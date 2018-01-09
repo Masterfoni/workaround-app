@@ -1,11 +1,14 @@
 package br.edu.ifpe.tads.pdm.faljval.workaround;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,20 +45,44 @@ public class DetailWorkerActivity extends AppCompatActivity {
         tvEmail.setText(emailWorker);
     }
 
-    public void btnCancelSolicitarWorker(View view) {
-        finish();
+    public void btnSolicitacaoDialog(View view)
+    {
+        final Dialog myDialog = new Dialog(this);
+        myDialog.setContentView(R.layout.service_form);
+        myDialog.setCancelable(false);
+        Button cancelDialog = myDialog.findViewById(R.id.btn_cancelar_svc_form);
+        Button solicitaDialog = myDialog.findViewById(R.id.btn_solicitar_svc_form);
+
+        myDialog.show();
+
+        cancelDialog.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                myDialog.dismiss();
+            }
+        });
+
+        solicitaDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                solicitarWorker(myDialog);
+            }
+        });
     }
 
-    public void btnSolicitarWorker(View view) {
+    public void solicitarWorker(Dialog theDialog) {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
         drServicos = fbDB.getReference();
 
-        EditText etNomeServico = findViewById(R.id.et_servico);
-        EditText etDescServico = findViewById(R.id.et_descservico);
-        EditText etLocalServico = findViewById(R.id.et_localservico);
+        EditText etNomeServico = theDialog.findViewById(R.id.et_servico);
+        EditText etDescServico = theDialog.findViewById(R.id.et_descservico);
+        EditText etLocalServico = theDialog.findViewById(R.id.et_localservico);
 
         final Service service = new Service(emailWorker, mAuth.getCurrentUser().getEmail(),
                 etNomeServico.getText().toString(),
@@ -80,5 +107,10 @@ public class DetailWorkerActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+         finish();
     }
 }
