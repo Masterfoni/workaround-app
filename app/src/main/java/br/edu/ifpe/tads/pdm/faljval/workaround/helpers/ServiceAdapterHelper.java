@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import br.edu.ifpe.tads.pdm.faljval.workaround.DetailServiceActivity;
 import br.edu.ifpe.tads.pdm.faljval.workaround.R;
+import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.EnumStatusServico;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Service;
 
 public class ServiceAdapterHelper extends BaseAdapter{
@@ -52,45 +53,40 @@ public class ServiceAdapterHelper extends BaseAdapter{
 
         nomeTxt.setText(service.getCliente());
 
-        if (!service.isAccepted() && !service.isFinished() && !service.isWorking())
+        if (service.getStatus() == EnumStatusServico.PENDING)
             ativiTxt.setText("Novo");
 
-        if (service.isAccepted() && !service.isFinished() && service.isWorking())
+        else if (service.getStatus() == EnumStatusServico.ACCEPTED)
             ativiTxt.setText("Em execução");
 
-        if (!service.isAccepted() && service.isFinished() && !service.isWorking())
+        else if (service.getStatus() == EnumStatusServico.REJECTED)
             ativiTxt.setText("Rejeitado");
 
-        if (service.isAccepted() && service.isFinished() && !service.isWorking())
+        else if (service.getStatus() == EnumStatusServico.FINISHED)
             ativiTxt.setText("Finalizado");
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //AQUI SERÁ A ABERTURA DA TELA DE DETALHAMENTO DO SERVICE + OPÇÕES DE ACEITAR SERVIÇOS
                 openDetailService(i, service.getCliente(), service.getWorker(),
                         service.getNome(), service.getDescricao(), service.getLocal(),
-                        service.isAccepted(), service.isFinished(),service.isWorking());
+                        service.getStatus());
             }
         });
 
         return view;
     }
 
-    private void openDetailService(int pos, String cliente, String worker,
-                                   String nome, String descricao, String local,
-                                   Boolean ...details)
+    private void openDetailService(int pos, String cliente, String worker, String nome, String descricao, String local, int status)
     {
         Intent i=new Intent(c, DetailServiceActivity.class);
-        i.putExtra("POS_KEY",pos);
-        i.putExtra("CLIENTE_KEY",cliente);
-        i.putExtra("WORKER_KEY",worker);
-        i.putExtra("NOME_KEY",nome);
-        i.putExtra("DESC_KEY",descricao);
-        i.putExtra("LOCAL_KEY",local);
-        i.putExtra("ACC_KEY",details[0]);
-        i.putExtra("END_KEY",details[1]);
-        i.putExtra("WORK_KEY",details[2]);
+        i.putExtra("POS_KEY", pos);
+        i.putExtra("CLIENTE_KEY", cliente);
+        i.putExtra("WORKER_KEY", worker);
+        i.putExtra("NOME_KEY", nome);
+        i.putExtra("DESC_KEY", descricao);
+        i.putExtra("LOCAL_KEY", local);
+        i.putExtra("STATUS_KEY", status);
         c.startActivity(i);
     }
 }

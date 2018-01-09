@@ -29,6 +29,7 @@ import br.edu.ifpe.tads.pdm.faljval.workaround.auth.FirebaseAuthListener;
 import br.edu.ifpe.tads.pdm.faljval.workaround.auth.UserAuth;
 import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.FirebaseHelper;
 import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.WorkerAdapterHelper;
+import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.EnumStatusServico;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Service;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.User;
 
@@ -106,7 +107,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                 if(UserAuth.getInstance().getUser().getEmail().equals(serviceChanged.getCliente()))
                 {
-                    if(serviceChanged.isAccepted())
+                    if(EnumStatusServico.ACCEPTED == serviceChanged.getStatus())
                     {
                         notifyUser("O worker de email: " + serviceChanged.getWorker() + ", aceitou o serviço!");
                     }

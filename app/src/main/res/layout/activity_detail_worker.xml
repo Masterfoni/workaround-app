@@ -1,126 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="br.edu.ifpe.tads.pdm.faljval.workaround.DetailWorkerActivity">
-
-    <ImageButton
-        android:id="@+id/user_profile_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:background="@android:color/transparent"
-        android:elevation="5dp"
-        android:padding="10dp"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/ic_worker_avatar" />
-
     <RelativeLayout
-        android:id="@+id/profile_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/roxao"
-        android:paddingBottom="24dp">
+        android:layout_height="match_parent"
+        tools:context="br.edu.ifpe.tads.pdm.faljval.workaround.DetailWorkerActivity">
 
-        <TextView
-            android:id="@+id/nome_worker_detail"
+        <ImageButton
+            android:id="@+id/user_profile_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="110dp"
-            android:textColor="#fff"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:background="@android:color/transparent"
+            android:elevation="5dp"
+            android:padding="10dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_worker_avatar" />
 
-        <TextView
-            android:id="@+id/atividade_worker_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/nome_worker_detail"
-            android:layout_centerHorizontal="true"
-            android:textColor="#fff"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/email_worker_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/atividade_worker_detail"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"
-            android:textColor="#fff"
-            android:textSize="14sp" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/profile_layout"
-        android:orientation="vertical"
-        android:scrollbars="vertical">
-
-        <TextView
+        <RelativeLayout
+            android:id="@+id/profile_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/txt_tituloservico" />
+            android:background="@color/roxao"
+            android:paddingBottom="24dp">
 
-        <EditText
-            android:id="@+id/et_servico"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/hint_titulservico" />
+            <TextView
+                android:id="@+id/nome_worker_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="110dp"
+                android:textColor="#fff"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_descservico" />
+            <TextView
+                android:id="@+id/atividade_worker_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nome_worker_detail"
+                android:layout_centerHorizontal="true"
+                android:textColor="#fff"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/et_descservico"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/hint_descservico"
-            android:lines="5"
-            android:scrollbars="vertical" />
+            <TextView
+                android:id="@+id/email_worker_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/atividade_worker_detail"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:textColor="#fff"
+                android:textSize="14sp" />
+        </RelativeLayout>
 
-        <TextView
+        <RelativeLayout
+            android:layout_below="@+id/profile_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_localservico" />
+            android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/et_localservico"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/hint_localervico" />
+            <RatingBar
+                android:id="@+id/simpleRatingBar"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="150dp"
+                android:numStars="5" />
+        </RelativeLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/vermelhoSuave"
-                android:onClick="btnCancelSolicitarWorker"
-                android:text="Cancelar" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/verdeBolado"
-                android:onClick="btnSolicitarWorker"
-                android:text="Solicitar Serviço" />
+                android:background="#6DCDED"
+                android:onClick="btnSolicitacaoDialog"
+                android:text="Realizar Solicitação" />
         </LinearLayout>
-    </LinearLayout>
-</RelativeLayout>
-</ScrollView>
+    </RelativeLayout>
+</RelativeLayout >
