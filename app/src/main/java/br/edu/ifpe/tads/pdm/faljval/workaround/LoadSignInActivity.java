@@ -1,6 +1,7 @@
 package br.edu.ifpe.tads.pdm.faljval.workaround;
 
 import android.app.ProgressDialog;
+import android.app.Service;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,13 +51,19 @@ public class LoadSignInActivity extends AppCompatActivity {
                 if (tempUser != null) {
                     UserAuth.getInstance().setUser(tempUser);
                     Intent intent;
-                    if(tempUser.getWorker())
+                    Intent serviceN = new Intent(LoadSignInActivity.this, NotificationService.class);
+
+                    if(tempUser.getWorker()) {
                         intent = new Intent(LoadSignInActivity.this, HomeWorkerActivity.class);
-                    else
+                        serviceN.putExtra("WORKER", true);
+                    }
+                    else {
                         intent = new Intent(LoadSignInActivity.this, HomeActivity.class);
+                        serviceN.putExtra("WORKER", false);
+                    }
                     progressDialog.dismiss();
-                    if (intent != null)
-                        startActivity(intent);
+                    startService(serviceN);
+                    startActivity(intent);
                 }
             }
             @Override

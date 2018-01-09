@@ -30,8 +30,12 @@
             android:name=".HomeWorkerActivity"
             android:launchMode="singleInstance" />
         <activity android:name=".LoadSignInActivity" />
-        <activity android:name=".DetailWorkerActivity"  android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
-        <activity android:name=".DetailServiceActivity"></activity>
+        <activity
+            android:name=".DetailWorkerActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity android:name=".DetailServiceActivity" />
+
+        <service android:name=".NotificationService" />
     </application>
 
 </manifest>
