@@ -16,7 +16,6 @@
         android:layout_height="match_parent">
 
         <include
-            android:layout_below="@+id/profile_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/content_main_solicitacoes"/>

@@ -18,7 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.FirebaseHelper;
-import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.ServiceAdapterHelper;
+import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.SolicitacaoAdapterHelper;
 
 public class SolicitacoesActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -31,7 +31,7 @@ public class SolicitacoesActivity extends AppCompatActivity implements Navigatio
 
     private SwipeRefreshLayout solSwipeRefreshLayout;
 
-    private ServiceAdapterHelper adapter;
+    private SolicitacaoAdapterHelper adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class SolicitacoesActivity extends AppCompatActivity implements Navigatio
         databaseRef = FirebaseDatabase.getInstance().getReference();
         helper = new FirebaseHelper(databaseRef);
 
-        adapter = new ServiceAdapterHelper(this, helper.retrieveSolicitations(getIntent().getStringExtra("USER_EMAIL"), true));
+        adapter = new SolicitacaoAdapterHelper(this, helper.retrieveSolicitations(getIntent().getStringExtra("USER_EMAIL"), true));
         listaSolicitacoes.setAdapter(adapter);
 
         solSwipeRefreshLayout = findViewById(R.id.solicitacoes_swipe_refresh);

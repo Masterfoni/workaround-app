@@ -1,12 +1,10 @@
 package br.edu.ifpe.tads.pdm.faljval.workaround;
 
-import android.content.DialogInterface;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -19,7 +17,6 @@ import android.widget.Toast;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +27,6 @@ import br.edu.ifpe.tads.pdm.faljval.workaround.auth.FirebaseAuthListener;
 import br.edu.ifpe.tads.pdm.faljval.workaround.auth.UserAuth;
 import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.FirebaseHelper;
 import br.edu.ifpe.tads.pdm.faljval.workaround.helpers.ServiceAdapterHelper;
-import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Service;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Worker;
 
 public class HomeWorkerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -60,7 +56,7 @@ public class HomeWorkerActivity extends AppCompatActivity implements NavigationV
         menuDrawer.addDrawerListener(menuToggle);
         menuToggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_worker);
+        NavigationView navigationView = findViewById(R.id.nav_view_worker);
         navigationView.setNavigationItemSelectedListener(this);
 
         listaServices = findViewById(R.id.lv_services);
