@@ -77,6 +77,8 @@ public class ServiceAdapterHelper extends BaseAdapter{
         return view;
     }
 
+    //AQUI PODERIA RECEBER UM PARAMETRO A MAIS, QUE DIFERENCIARIA SE ESTAVA SENDO ABERTO PELO WORKER OU PELO CLIENTE,
+    //MOSTRANDO VIEWS DIFERENTES BASEADO NISSO?
     private void openDetailService(int pos, String cliente, String worker, String nome, String descricao, String local, int status)
     {
         Intent i=new Intent(c, DetailServiceActivity.class);

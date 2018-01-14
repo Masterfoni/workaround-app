@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:padding="10dp"
             android:scaleType="centerCrop"
-            card_view:srcCompat="@drawable/ic_user_avatar"/>
+            card_view:srcCompat="@drawable/ic_solicitacao_avatar"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Nome"
-                android:id="@+id/nome_worker_txt"
+                android:id="@+id/nome_worker_sol_txt"
                 android:padding="8dp"
                 android:textColor="@color/verdeBolado"
                 android:textStyle="bold"
@@ -40,10 +40,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/verdeBolado"
+                android:text="Descrição"
                 android:lines="3"
-                android:id="@+id/atividade_worker_txt"
+                android:id="@+id/descricao_sol_txt"
                 android:padding="8dp"
                 android:layout_alignParentLeft="true"
                 />

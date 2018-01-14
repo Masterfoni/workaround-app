@@ -9,6 +9,11 @@ tools:showIn="navigation_view">
         android:title="@string/menu_perfil" />
 
     <item
+        android:id="@+id/nav_solicitacoes"
+        android:icon="@drawable/ic_solicitacoes"
+        android:title="@string/menu_solicitacoes"/>
+
+    <item
         android:id="@+id/nav_sair"
         android:icon="@drawable/ic_logout"
         android:title="@string/menu_sair" />

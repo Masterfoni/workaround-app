@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.ArrayList;
 
 import br.edu.ifpe.tads.pdm.faljval.workaround.R;
+import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.EnumStatusServico;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Service;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Worker;
 
@@ -59,7 +60,7 @@ public class FirebaseHelper {
         }
     }
 
-    private void fetchDataServicesTo(String param, DataSnapshot dataSnapshot)
+    private void fetchDataServicesTo(String param, boolean acceptedOnly, DataSnapshot dataSnapshot)
     {
         services.clear();
         keysServices.clear();
@@ -70,39 +71,68 @@ public class FirebaseHelper {
 
             if(service.getWorker().equals(param))
             {
-                services.add(service);
-                keysServices.add(ds.getKey());
+                if(acceptedOnly && service.getStatus() == EnumStatusServico.ACCEPTED)
+                {
+                    services.add(service);
+                    keysServices.add(ds.getKey());
+                }
+                else
+                {
+                    services.add(service);
+                    keysServices.add(ds.getKey());
+                }
+            }
+        }
+    }
+
+    private void fetchDataSolicitationsTo(String clienteEmail, boolean acceptedOnly, DataSnapshot dataSnapshot)
+    {
+        services.clear();
+        keysServices.clear();
+
+        for (DataSnapshot ds : dataSnapshot.getChildren())
+        {
+            Service service = ds.getValue(Service.class);
+
+            if(service.getCliente().equals(clienteEmail))
+            {
+                if(acceptedOnly && service.getStatus() == EnumStatusServico.ACCEPTED)
+                {
+                    services.add(service);
+                    keysServices.add(ds.getKey());
+                }
+                else
+                {
+                    services.add(service);
+                    keysServices.add(ds.getKey());
+                }
             }
         }
     }
 
     public ArrayList<Worker> retrieveWorkers () {
-        adicionarlistener("") ;
+        adicionarlistener("", false) ;
         return workers;
     }
 
-    public ArrayList<Service> retrieveServices(String param) {
-        adicionarlistener(param) ;
+    public ArrayList<Service> retrieveServices(String param, boolean acceptedOnly) {
+        adicionarlistener(param, acceptedOnly);
         return services;
     }
 
-    private void adicionarlistener(final String param) {
+    public ArrayList<Service> retrieveSolicitations(final String clientEmail, final boolean acceptedOnly)
+    {
         db.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if(dataSnapshot.getKey().equals("users"))
-                    fetchDataWorkerOn(dataSnapshot);
                 if(dataSnapshot.getKey().equals("services"))
-                    fetchDataServicesTo(param, dataSnapshot);
+                    fetchDataSolicitationsTo(clientEmail, acceptedOnly, dataSnapshot);
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                if(dataSnapshot.getKey().equals("users")) {
-                    fetchDataWorkerOn(dataSnapshot);
-                }
                 if(dataSnapshot.getKey().equals("services")) {
-                    fetchDataServicesTo(param, dataSnapshot);
+                    fetchDataServicesTo(clientEmail, acceptedOnly, dataSnapshot);
                 }
             }
 
@@ -116,5 +146,43 @@ public class FirebaseHelper {
             public void onCancelled(DatabaseError databaseError) {}
         });
 
+        return services;
+    }
+
+    private void adicionarlistener(final String param, final boolean acceptedOnly) {
+        db.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                if(dataSnapshot.getKey().equals("users"))
+                {
+                    fetchDataWorkerOn(dataSnapshot);
+                }
+                else if(dataSnapshot.getKey().equals("services"))
+                {
+                    fetchDataServicesTo(param, acceptedOnly, dataSnapshot);
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                if(dataSnapshot.getKey().equals("users"))
+                {
+                    fetchDataWorkerOn(dataSnapshot);
+                }
+                else if(dataSnapshot.getKey().equals("services"))
+                {
+                    fetchDataServicesTo(param, acceptedOnly, dataSnapshot);
+                }
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
     }
 }

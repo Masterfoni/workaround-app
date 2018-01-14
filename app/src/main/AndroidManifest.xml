@@ -26,15 +26,11 @@
         <activity android:name=".SignUpWorkerActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".HomeActivity" />
-        <activity
-            android:name=".HomeWorkerActivity"
-            android:launchMode="singleInstance" />
+        <activity android:name=".HomeWorkerActivity" android:launchMode="singleInstance" />
         <activity android:name=".LoadSignInActivity" />
-        <activity
-            android:name=".DetailWorkerActivity"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity android:name=".DetailWorkerActivity" android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity android:name=".DetailServiceActivity" />
-
+        <activity android:name=".SolicitacoesActivity" />
         <service android:name=".helpers.NotificationService" />
     </application>
 

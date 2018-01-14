@@ -12,6 +12,7 @@
     <string name="btn_logout">Sair</string>
     <string name="btn_signUp">criar conta</string>
     <string name="btn_signIn">Entrar</string>
+
     <string-array name="spin_jobs">
         <item>Mecânico</item>
         <item>Encanador</item>
@@ -24,6 +25,7 @@
     <string name="menu_fechar">Fechar</string>
     <string name="menu_perfil">Perfil</string>
     <string name="menu_sair">Sair</string>
+    <string name="menu_solicitacoes">Solicitações</string>
     <string name="txt_tituloservico">Serviço:</string>
     <string name="hint_titulservico">Nome do serviço (Ex. Consertar torneira)</string>
     <string name="txt_descservico">Descrição do Serviço</string>

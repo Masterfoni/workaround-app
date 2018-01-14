@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -9,17 +9,18 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <ImageButton
             android:id="@+id/user_profile_photo"
             android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
-            android:elevation="5dp"
             android:layout_width="90dp"
             android:layout_height="match_parent"
-            android:padding="10dp"
             android:scaleType="centerCrop"
+            android:padding="10dp"
             card_view:srcCompat="@drawable/ic_worker_avatar"/>
 
         <LinearLayout
@@ -33,7 +34,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Nome"
                 android:id="@+id/nome_worker_txt"
-                android:padding="10dp"
+                android:padding="8dp"
                 android:textColor="@color/roxao"
                 android:textStyle="bold"
                 android:layout_alignParentLeft="true" />
@@ -46,9 +47,8 @@
                 android:text="Atividade"
                 android:lines="3"
                 android:id="@+id/atividade_worker_txt"
-                android:padding="10dp"
-                android:layout_alignParentLeft="true"
-                />
+                android:padding="8dp"
+                android:layout_alignParentLeft="true" />
         </LinearLayout>
     </LinearLayout>
-</android.support.v7.widget.CardView>
+</RelativeLayout>

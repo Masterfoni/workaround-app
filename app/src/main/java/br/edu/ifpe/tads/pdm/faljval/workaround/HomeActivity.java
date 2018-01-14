@@ -1,6 +1,7 @@
 package br.edu.ifpe.tads.pdm.faljval.workaround;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -128,6 +129,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         {
             BtnSignOutClick(findViewById(R.id.homepage));
         }
+        else if(item.getItemId() == R.id.nav_solicitacoes)
+        {
+            BtnSolicitacoesClick(findViewById((R.id.homepage)));
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.homepage);
         drawer.closeDrawer(GravityCompat.START);
@@ -135,6 +140,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    public void BtnSolicitacoesClick(View view)
+    {
+        Intent intent = new Intent(this, SolicitacoesActivity.class);
+        intent.putExtra("USER_EMAIL", mAuth.getCurrentUser().getEmail());
+        startActivity(intent);
+    }
 
     public void BtnSignOutClick(View view) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();

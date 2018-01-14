@@ -16,6 +16,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -67,7 +68,7 @@ public class HomeWorkerActivity extends AppCompatActivity implements NavigationV
         databaseRef = FirebaseDatabase.getInstance().getReference();
         helper = new FirebaseHelper(databaseRef);
 
-        adapter = new ServiceAdapterHelper(this, helper.retrieveServices(mAuth.getCurrentUser().getEmail()));
+        adapter = new ServiceAdapterHelper(this, helper.retrieveServices(mAuth.getCurrentUser().getEmail(), false));
         listaServices.setAdapter(adapter);
 
         homeSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.home_worker_swipe_refresh);
@@ -79,6 +80,9 @@ public class HomeWorkerActivity extends AppCompatActivity implements NavigationV
                 homeSwipeRefreshLayout.setRefreshing(false);
             }
         });
+
+        ShimmerFrameLayout container = findViewById(R.id.shimmer_view_container);
+        container.startShimmerAnimation();
 
         setupUserInfo();
     }
