@@ -32,4 +32,6 @@
     <string name="hint_descservico">Breve descrição sobre o serviço.</string>
     <string name="hint_localervico">Ex. Várzea, Recife, PE</string>
     <string name="txt_localservico">Local do serviço</string>
+    <string name="txt_statusservico">Status do serviço</string>
+    <string name="txt_btnAvaliar">Avaliar</string>
 </resources>

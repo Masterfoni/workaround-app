@@ -150,7 +150,10 @@ public class DetailServiceActivity extends AppCompatActivity {
         Service service = new Service();
         service.setWorker(emailWorker);
         service.setCliente(emailCliente);
-        service.setStatus(EnumStatusServico.FINISHED);
+        service.setStatus(EnumStatusServico.WAITING);
+        service.setDescricao(descServico);
+        service.setNome(nomeServico);
+        service.setLocal(localServico);
         drServicos.child(FirebaseHelper.keysServices.get(pos)).setValue(service);
         finish();
     }
@@ -160,6 +163,9 @@ public class DetailServiceActivity extends AppCompatActivity {
         service.setWorker(emailWorker);
         service.setCliente(emailCliente);
         service.setStatus(EnumStatusServico.REJECTED);
+        service.setDescricao(descServico);
+        service.setNome(nomeServico);
+        service.setLocal(localServico);
         drServicos.child(FirebaseHelper.keysServices.get(pos)).setValue(service);
         finish();
     }
@@ -169,6 +175,9 @@ public class DetailServiceActivity extends AppCompatActivity {
         service.setWorker(emailWorker);
         service.setCliente(emailCliente);
         service.setStatus(EnumStatusServico.ACCEPTED);
+        service.setDescricao(descServico);
+        service.setNome(nomeServico);
+        service.setLocal(localServico);
         drServicos.child(FirebaseHelper.keysServices.get(pos)).setValue(service);
         finish();
     }

@@ -1,6 +1,7 @@
 package br.edu.ifpe.tads.pdm.faljval.workaround.helpers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import br.edu.ifpe.tads.pdm.faljval.workaround.DetailServiceActivity;
+import br.edu.ifpe.tads.pdm.faljval.workaround.DetailSolicitacaoActivity;
 import br.edu.ifpe.tads.pdm.faljval.workaround.R;
+import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.EnumStatusServico;
 import br.edu.ifpe.tads.pdm.faljval.workaround.modelo.Service;
 
 public class SolicitacaoAdapterHelper extends BaseAdapter{
@@ -49,19 +53,45 @@ public class SolicitacaoAdapterHelper extends BaseAdapter{
         final Service service = (Service) this.getItem(i);
 
         nomeTxt.setText(service.getWorker());
-        descTxt.setText(service.getDescricao());
+        if (service.getStatus() == EnumStatusServico.PENDING)
+            descTxt.setText("Esperando aceite.");
 
-//        view.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openDetailSolicitacao();
-//            }
-//        });
+        else if (service.getStatus() == EnumStatusServico.ACCEPTED)
+            descTxt.setText("Em execução");
+
+        else if (service.getStatus() == EnumStatusServico.REJECTED)
+            descTxt.setText("Rejeitado");
+
+        else if (service.getStatus() == EnumStatusServico.FINISHED)
+            descTxt.setText("Finalizado");
+
+        else if (service.getStatus() == EnumStatusServico.WAITING)
+            descTxt.setText("Avalie o Serviço");
+
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDetailSolicitacao(i, service.getCliente(), service.getWorker(),
+        service.getNome(), service.getDescricao(), service.getLocal(),
+                service.getStatus());
+            }
+        });
 
         return view;
     }
 
-//    private void openDetailSolicitacao()
-//    {
-//    }
+    private void openDetailSolicitacao(int pos, String cliente, String worker, String nome,
+                                       String descricao, String local, int status)
+    {
+        Intent i = new Intent(c, DetailSolicitacaoActivity.class);
+        i.putExtra("POS_KEY", pos);
+        i.putExtra("CLIENTE_KEY", cliente);
+        i.putExtra("WORKER_KEY", worker);
+        i.putExtra("NOME_KEY", nome);
+        i.putExtra("DESC_KEY", descricao);
+        i.putExtra("LOCAL_KEY", local);
+        i.putExtra("STATUS_KEY", status);
+        c.startActivity(i);
+    }
 }

@@ -12,6 +12,7 @@ public class EnumStatusServico {
     public static final int WORKING = 2;
     public static final int PENDING = 3;
     public static  final int REJECTED = 4;
+    public static  final int WAITING = 5;
 
     public EnumStatusServico(@StatusServico int statusServico) {
         System.out.println("Status :" + statusServico);

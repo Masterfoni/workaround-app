@@ -65,6 +65,9 @@ public class ServiceAdapterHelper extends BaseAdapter{
         else if (service.getStatus() == EnumStatusServico.FINISHED)
             ativiTxt.setText("Finalizado");
 
+        else if (service.getStatus() == EnumStatusServico.WAITING)
+            ativiTxt.setText("Finalizado");
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
