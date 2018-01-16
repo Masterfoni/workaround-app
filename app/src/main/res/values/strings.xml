@@ -26,7 +26,7 @@
     <string name="menu_perfil">Perfil</string>
     <string name="menu_sair">Sair</string>
     <string name="menu_solicitacoes">Solicitações</string>
-    <string name="txt_tituloservico">Serviço:</string>
+    <string name="txt_tituloservico">Serviço</string>
     <string name="hint_titulservico">Nome do serviço (Ex. Consertar torneira)</string>
     <string name="txt_descservico">Descrição do Serviço</string>
     <string name="hint_descservico">Breve descrição sobre o serviço.</string>

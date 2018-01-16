@@ -66,26 +66,27 @@ public class ServiceAdapterHelper extends BaseAdapter{
             ativiTxt.setText("Finalizado");
 
         else if (service.getStatus() == EnumStatusServico.WAITING)
-            ativiTxt.setText("Finalizado");
+            ativiTxt.setText("Aguardando avaliação");
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDetailService(i, service.getCliente(), service.getWorker(),
                         service.getNome(), service.getDescricao(), service.getLocal(),
-                        service.getStatus());
+                        service.getStatus(), service.getWorkerNome());
             }
         });
 
         return view;
     }
 
-    private void openDetailService(int pos, String cliente, String worker, String nome, String descricao, String local, int status)
+    private void openDetailService(int pos, String cliente, String worker, String nome, String descricao, String local, int status, String nomeWorker)
     {
         Intent i=new Intent(c, DetailServiceActivity.class);
         i.putExtra("POS_KEY", pos);
         i.putExtra("CLIENTE_KEY", cliente);
         i.putExtra("WORKER_KEY", worker);
+        i.putExtra("WORKER_NOME_KEY", nomeWorker);
         i.putExtra("NOME_KEY", nome);
         i.putExtra("DESC_KEY", descricao);
         i.putExtra("LOCAL_KEY", local);

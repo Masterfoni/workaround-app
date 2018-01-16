@@ -81,7 +81,7 @@ public class SolicitacoesActivity extends AppCompatActivity implements Navigatio
             finish();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.homepage);
+        DrawerLayout drawer = findViewById(R.id.homepage);
         drawer.closeDrawer(GravityCompat.START);
 
         return true;

@@ -52,7 +52,8 @@ public class SolicitacaoAdapterHelper extends BaseAdapter{
 
         final Service service = (Service) this.getItem(i);
 
-        nomeTxt.setText(service.getWorker());
+        nomeTxt.setText(service.getWorkerNome());
+
         if (service.getStatus() == EnumStatusServico.PENDING)
             descTxt.setText("Esperando aceite.");
 
@@ -74,7 +75,7 @@ public class SolicitacaoAdapterHelper extends BaseAdapter{
             public void onClick(View v) {
                 openDetailSolicitacao(i, service.getCliente(), service.getWorker(),
         service.getNome(), service.getDescricao(), service.getLocal(),
-                service.getStatus());
+                service.getStatus(), service.getWorkerNome(), service.getNota());
             }
         });
 
@@ -82,7 +83,7 @@ public class SolicitacaoAdapterHelper extends BaseAdapter{
     }
 
     private void openDetailSolicitacao(int pos, String cliente, String worker, String nome,
-                                       String descricao, String local, int status)
+                                       String descricao, String local, int status, String nomeWorker, int nota)
     {
         Intent i = new Intent(c, DetailSolicitacaoActivity.class);
         i.putExtra("POS_KEY", pos);
@@ -92,6 +93,8 @@ public class SolicitacaoAdapterHelper extends BaseAdapter{
         i.putExtra("DESC_KEY", descricao);
         i.putExtra("LOCAL_KEY", local);
         i.putExtra("STATUS_KEY", status);
+        i.putExtra("WORKER_NOME_KEY", nomeWorker);
+        i.putExtra("NOTA_KEY", nota);
         c.startActivity(i);
     }
 }

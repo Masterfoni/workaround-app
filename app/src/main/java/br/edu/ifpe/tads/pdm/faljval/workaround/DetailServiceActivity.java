@@ -23,6 +23,7 @@ public class DetailServiceActivity extends AppCompatActivity {
     private String nomeServico;
     private String descServico;
     private String localServico;
+    private String nomeWorker;
     private int status;
 
     @Override
@@ -33,6 +34,7 @@ public class DetailServiceActivity extends AppCompatActivity {
         Intent i = getIntent();
         pos = i.getIntExtra("POS_KEY", 0);
         emailWorker = i.getStringExtra("WORKER_KEY");
+        nomeWorker = i.getStringExtra("WORKER_NOME_KEY");
         emailCliente = i.getStringExtra("CLIENTE_KEY");
         nomeServico = i.getStringExtra("NOME_KEY");
         descServico = i.getStringExtra("DESC_KEY");
@@ -149,11 +151,13 @@ public class DetailServiceActivity extends AppCompatActivity {
     private void finalizarService(View view) {
         Service service = new Service();
         service.setWorker(emailWorker);
+        service.setWorkerNome(nomeWorker);
         service.setCliente(emailCliente);
         service.setStatus(EnumStatusServico.WAITING);
         service.setDescricao(descServico);
         service.setNome(nomeServico);
         service.setLocal(localServico);
+        service.setNota(0);
         drServicos.child(FirebaseHelper.keysServices.get(pos)).setValue(service);
         finish();
     }
@@ -161,11 +165,13 @@ public class DetailServiceActivity extends AppCompatActivity {
     private void rejeitarService(View view) {
         Service service = new Service();
         service.setWorker(emailWorker);
+        service.setWorkerNome(nomeWorker);
         service.setCliente(emailCliente);
         service.setStatus(EnumStatusServico.REJECTED);
         service.setDescricao(descServico);
         service.setNome(nomeServico);
         service.setLocal(localServico);
+        service.setNota(0);
         drServicos.child(FirebaseHelper.keysServices.get(pos)).setValue(service);
         finish();
     }
@@ -173,11 +179,13 @@ public class DetailServiceActivity extends AppCompatActivity {
     private void aceitarService(View view) {
         Service service = new Service();
         service.setWorker(emailWorker);
+        service.setWorkerNome(nomeWorker);
         service.setCliente(emailCliente);
         service.setStatus(EnumStatusServico.ACCEPTED);
         service.setDescricao(descServico);
         service.setNome(nomeServico);
         service.setLocal(localServico);
+        service.setNota(0);
         drServicos.child(FirebaseHelper.keysServices.get(pos)).setValue(service);
         finish();
     }

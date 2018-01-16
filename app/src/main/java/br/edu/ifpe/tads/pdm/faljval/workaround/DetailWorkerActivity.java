@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +24,7 @@ public class DetailWorkerActivity extends AppCompatActivity {
 
     private DatabaseReference drServicos;
     private String emailWorker;
+    private String nomeWorker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class DetailWorkerActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         emailWorker = i.getStringExtra("EMAIL_KEY");
-        String nomeWorker = i.getStringExtra("NOME_KEY");
+        nomeWorker = i.getStringExtra("NOME_KEY");
         String atividadeWorker = i.getStringExtra("ATIVIDADE_KEY");
 
         TextView tvNome = findViewById(R.id.nome_worker_detail);
@@ -84,7 +84,7 @@ public class DetailWorkerActivity extends AppCompatActivity {
         EditText etDescServico = theDialog.findViewById(R.id.et_descservico);
         EditText etLocalServico = theDialog.findViewById(R.id.et_localservico);
 
-        final Service service = new Service(emailWorker, mAuth.getCurrentUser().getEmail(),
+        final Service service = new Service(emailWorker, nomeWorker, mAuth.getCurrentUser().getEmail(),
                 etNomeServico.getText().toString(),
                 etDescServico.getText().toString(),
                 etLocalServico.getText().toString());

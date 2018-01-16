@@ -15,9 +15,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/list_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/vermelhoSuave"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Solicitações pendentes"
+            android:textColor="@color/roxao"/>
+
         <include
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/list_title"
             layout="@layout/content_main_solicitacoes"/>
     </RelativeLayout>
 
@@ -26,7 +38,7 @@
         android:id="@+id/nav_view_cliente"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
+        android:layout_gravity="end"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/homepage_drawer">

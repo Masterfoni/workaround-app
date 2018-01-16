@@ -6,22 +6,26 @@ import com.google.firebase.database.IgnoreExtraProperties;
 public class Service {
 
     private String worker;
+    private String workerNome;
     private String cliente;
     private String nome;
     private String descricao;
     private String local;
+    private int nota;
     private int status;
 
     public Service() {
     }
 
-    public Service(String worker, String cliente, String nome, String descricao, String local) {
+    public Service(String worker, String workerNome, String cliente, String nome, String descricao, String local) {
         this.worker = worker;
+        this.workerNome = workerNome;
         this.cliente = cliente;
         this.nome = nome;
         this.descricao = descricao;
         this.local = local;
         this.status = EnumStatusServico.PENDING;
+        this.nota = 0;
     }
 
     public int getStatus() {
@@ -38,6 +42,14 @@ public class Service {
 
     public void setWorker(String worker) {
         this.worker = worker;
+    }
+
+    public String getWorkerNome() {
+        return workerNome;
+    }
+
+    public void setWorkerNome(String workerNome) {
+        this.workerNome = workerNome;
     }
 
     public String getCliente() {
@@ -71,4 +83,8 @@ public class Service {
     public void setLocal(String local) {
         this.local = local;
     }
+
+    public int getNota() { return nota; }
+
+    public void setNota(int nota) { this.nota = nota; }
 }

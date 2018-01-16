@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="roxao">#65209e</color>
+    <color name="azulLight">#5C7ACC</color>
+    <color name="azulPesadao">#1C43AD</color>
     <color name="verdeBolado">#42f4a1</color>
     <color name="vermelhoSuave">#EF5350</color>
 </resources>
