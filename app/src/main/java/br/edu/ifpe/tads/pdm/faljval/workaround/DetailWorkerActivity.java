@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,11 +36,18 @@ public class DetailWorkerActivity extends AppCompatActivity {
         emailWorker = i.getStringExtra("EMAIL_KEY");
         nomeWorker = i.getStringExtra("NOME_KEY");
         String atividadeWorker = i.getStringExtra("ATIVIDADE_KEY");
+        float nota =  i.getFloatExtra("NOTA_KEY",0);
+        int contagem = i.getIntExtra("CONT_KEY",0);
 
         TextView tvNome = findViewById(R.id.nome_worker_detail);
         TextView tvAtividade = findViewById(R.id.atividade_worker_detail);
         TextView tvEmail = findViewById(R.id.email_worker_detail);
+        TextView tvContagem = findViewById(R.id.services_completos);
 
+        RatingBar rb = findViewById(R.id.notaFinalWorker);
+        rb.setRating(nota);
+
+        tvContagem.setText("Serviços completos: " + contagem);
         tvNome.setText(nomeWorker);
         tvAtividade.setText(atividadeWorker);
         tvEmail.setText(emailWorker);

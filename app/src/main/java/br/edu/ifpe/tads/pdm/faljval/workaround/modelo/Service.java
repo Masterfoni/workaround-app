@@ -11,7 +11,7 @@ public class Service {
     private String nome;
     private String descricao;
     private String local;
-    private int nota;
+    private float nota;
     private int status;
 
     public Service() {
@@ -84,7 +84,7 @@ public class Service {
         this.local = local;
     }
 
-    public int getNota() { return nota; }
+    public float getNota() { return nota; }
 
-    public void setNota(int nota) { this.nota = nota; }
+    public void setNota(float nota) { this.nota = nota; }
 }

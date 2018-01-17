@@ -143,6 +143,8 @@ public class SignUpWorkerActivity extends AppCompatActivity {
                     newWorker.setDisponivel(false);
                     newWorker.setEmail(email);
                     newWorker.setWorker(true);
+                    newWorker.setNota(0);
+                    newWorker.setTotalServices(0);
 
                     DatabaseReference drUsers = FirebaseDatabase.getInstance().getReference("users" );
                     drUsers.child(mAuth.getCurrentUser().getUid()).setValue(newWorker);

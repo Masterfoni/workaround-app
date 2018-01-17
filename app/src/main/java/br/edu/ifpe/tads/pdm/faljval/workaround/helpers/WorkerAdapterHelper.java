@@ -62,7 +62,8 @@ public class WorkerAdapterHelper extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //AQUI SERÁ A ABERTURA DA TELA DE DETALHAMENTO DO WORKER + OPÇÕES DE SOLICITAR SERVIÇOS
-                openDetailActivity(worker.getEmail(), worker.getNome(), worker.getAtividade());
+                openDetailActivity(worker.getTotalServices(), worker.getNota(),
+                        worker.getEmail(), worker.getNome(), worker.getAtividade());
             }
         });
 
@@ -70,12 +71,14 @@ public class WorkerAdapterHelper extends BaseAdapter {
     }
 
     // ABRE DETAILWORKER
-    private void openDetailActivity(String...details)
+    private void openDetailActivity(int contagem, float nota, String...details)
     {
         Intent i=new Intent(c, DetailWorkerActivity.class);
         i.putExtra("EMAIL_KEY",details[0]);
         i.putExtra("NOME_KEY",details[1]);
         i.putExtra("ATIVIDADE_KEY",details[2]);
+        i.putExtra("CONT_KEY",contagem);
+        i.putExtra("NOTA_KEY",nota);
         c.startActivity(i);
     }
 }

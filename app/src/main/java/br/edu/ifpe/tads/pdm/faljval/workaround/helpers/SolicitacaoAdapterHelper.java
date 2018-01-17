@@ -83,7 +83,7 @@ public class SolicitacaoAdapterHelper extends BaseAdapter{
     }
 
     private void openDetailSolicitacao(int pos, String cliente, String worker, String nome,
-                                       String descricao, String local, int status, String nomeWorker, int nota)
+                                       String descricao, String local, int status, String nomeWorker, float nota)
     {
         Intent i = new Intent(c, DetailSolicitacaoActivity.class);
         i.putExtra("POS_KEY", pos);

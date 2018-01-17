@@ -6,6 +6,8 @@ import com.google.firebase.database.IgnoreExtraProperties;
 public class Worker extends User{
     private String atividade;
     private Boolean disponivel;
+    private float nota;
+    private int totalServices;
 
     public Worker(){}
 
@@ -31,5 +33,17 @@ public class Worker extends User{
 
     public void setDisponivel(Boolean disponivel) {
         this.disponivel = disponivel;
+    }
+
+    public float getNota() { return nota; }
+
+    public void setNota(float nota) { this.nota = nota; }
+
+    public int getTotalServices() {
+        return totalServices;
+    }
+
+    public void setTotalServices(int totalServices) {
+        this.totalServices = totalServices;
     }
 }

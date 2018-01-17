@@ -19,12 +19,12 @@
             android:id="@+id/list_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/vermelhoSuave"
+            android:background="@color/verdeBolado"
             android:gravity="center_vertical"
-            android:padding="5dp"
+            android:padding="20dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Solicitações pendentes"
-            android:textColor="@color/roxao"/>
+            android:text="Minhas Solicitações"
+            android:textColor="@color/azulPesadao"/>
 
         <include
             android:layout_width="match_parent"

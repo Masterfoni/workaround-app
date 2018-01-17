@@ -34,4 +34,5 @@
     <string name="txt_localservico">Local do serviço</string>
     <string name="txt_statusservico">Status do serviço</string>
     <string name="txt_btnAvaliar">Avaliar</string>
+    <string name="txt_reputacao">Média de Avaliação</string>
 </resources>
